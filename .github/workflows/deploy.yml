@@ -42,3 +42,20 @@ jobs:
 
       - name: 빌드하기
       run: npm run build
+
+    comment-bot:
+      if: contains(github.event.comment.html,'/pull/')
+      runs-on:[macos-latest]
+      steps:
+        - name: Add deploy comment
+            if: contains(github.event.comment.body, '/deploy')   # check the comment if it contains the keywords
+            uses: actions/github-script@v5
+            with:
+              github-token: ${{secrets.GITHUB_TOKEN}}
+              script: |
+                github.rest.issues.createComment({
+                  issue_number: context.issue.number,
+                  owner: context.repo.owner,
+                  repo: context.repo.repo,
+                  body: '🚀'
+                })
