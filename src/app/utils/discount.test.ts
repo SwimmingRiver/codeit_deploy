@@ -1,4 +1,4 @@
-import { calculateDiscount, calculatePrice } from "./discount";
+import { calculatePrice } from "./discount";
 
 describe("할인 계산기", () => {
   test("기본 가격에 할인이 적용되지 않아야 함 (5만원 미만)", () => {
@@ -8,7 +8,7 @@ describe("할인 계산기", () => {
     expect(finalPrice).toBe(30000);
   });
   describe("금액별 할인 테스트", () => {
-    test("5만원이상 구매시 5% 할인 적용", () => {
+    test("5만원이상 구매시d 5% 할인 적용", () => {
       const price = 50000;
       const customer = { membership: "regular" };
       const finalPrice = calculatePrice(price, customer);
